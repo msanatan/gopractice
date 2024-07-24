@@ -1,6 +1,11 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/msanatan/golangtutorials/clicontacts/db"
+	"github.com/spf13/cobra"
+)
+
+var database db.Database
 
 var rootCmd = &cobra.Command{
 	Use:   "contacts",
@@ -10,4 +15,10 @@ var rootCmd = &cobra.Command{
 
 func Execute() error {
 	return rootCmd.Execute()
+}
+
+func init() {
+	// This app is simple, so we can just set the SQLite adapter here
+	// The interface is better for testing
+	database = &db.SQLite{}
 }
