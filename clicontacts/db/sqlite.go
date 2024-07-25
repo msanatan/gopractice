@@ -4,7 +4,7 @@ import (
 	"database/sql"
 
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/msanatan/golangtutorials/clicontacts/models"
+	"github.com/msanatan/gopractice/clicontacts/models"
 )
 
 type SQLite struct {

@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"testing"
 
-	"example.com/greetings"
+	"github.com/msanatan/gopractice/greetings"
 )
 
 func TestHelloName(t *testing.T) {

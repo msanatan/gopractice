@@ -1,4 +1,4 @@
-module github.com/msanatan/golang-raylib
+module github.com/msanatan/gopractice/raylib/3dtest
 
 go 1.22.4
 
@@ -10,4 +10,4 @@ require (
 	golang.org/x/sys v0.21.0 // indirect
 )
 
-replace github.com/msanatan/golang-raylib.entities => ../entities
+replace github.com/msanatan/gopractice/raylib/3dtest.entities => ../entities

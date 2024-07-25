@@ -2,7 +2,7 @@ package main
 
 import (
 	rl "github.com/gen2brain/raylib-go/raylib"
-	entities "github.com/msanatan/golang-raylib/entities"
+	entities "github.com/msanatan/gopractice/raylib/3dtest/entities"
 )
 
 // Global variables

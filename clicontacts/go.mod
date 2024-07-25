@@ -1,4 +1,4 @@
-module github.com/msanatan/golangtutorials/clicontacts
+module github.com/msanatan/gopractice/clicontacts
 
 go 1.22.4
 

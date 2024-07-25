@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/msanatan/golangtutorials/clicontacts/db"
+	"github.com/msanatan/gopractice/clicontacts/db"
 	"github.com/spf13/cobra"
 )
 

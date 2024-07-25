@@ -1,6 +1,6 @@
 package db
 
-import "github.com/msanatan/golangtutorials/clicontacts/models"
+import "github.com/msanatan/gopractice/clicontacts/models"
 
 type Database interface {
 	InitDB() error
