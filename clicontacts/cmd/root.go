@@ -17,8 +17,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
-func init() {
-	// This app is simple, so we can just set the SQLite adapter here
-	// The interface is better for testing
-	database = &db.SQLite{}
+// Update the DB to a real implementation
+func SetDB(db db.Database) {
+	database = db
 }
