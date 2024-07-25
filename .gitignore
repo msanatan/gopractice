@@ -29,3 +29,6 @@ go.work.sum
 
 # Output files
 bin/
+
+# SQLite
+*.db
