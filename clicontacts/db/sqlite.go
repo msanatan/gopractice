@@ -23,10 +23,10 @@ func (s *SQLite) InitDB() error {
 func (s *SQLite) createContactsTable() error {
 	query := `
 		CREATE TABLE IF NOT EXISTS contacts (
-			id INTEGER PRIMARY KEY AUTOINCREMENT
-			name TEXT
-			email TEXT
-			created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			name TEXT,
+			email TEXT UNIQUE,
+			created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 			updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 		)
 	`
