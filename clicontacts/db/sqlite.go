@@ -60,3 +60,20 @@ func (s *SQLite) ListContacts() ([]models.Contact, error) {
 
 	return contacts, nil
 }
+
+func (s *SQLite) FindContact(id int) (models.Contact, error) {
+	var contact models.Contact
+	query := `SELECT id, name, email FROM contacts WHERE id = ?`
+	row := s.DB.QueryRow(query, id)
+	err := row.Scan(&contact.ID, &contact.Name, &contact.Email)
+	if err != nil {
+		return contact, err
+	}
+	return contact, nil
+}
+
+func (s *SQLite) DeleteContact(id int) error {
+	query := `DELETE FROM contacts WHERE id = ?`
+	_, err := s.DB.Exec(query, id)
+	return err
+}
