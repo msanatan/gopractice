@@ -39,3 +39,24 @@ func (s *SQLite) CreateContact(contact models.Contact) error {
 	_, err := s.DB.Exec(query, contact.Name, contact.Email)
 	return err
 }
+
+func (s *SQLite) ListContacts() ([]models.Contact, error) {
+	query := `SELECT id, name, email FROM contacts`
+	rows, err := s.DB.Query(query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var contacts []models.Contact
+	for rows.Next() {
+		var contact models.Contact
+		err := rows.Scan(&contact.ID, &contact.Name, &contact.Email)
+		if err != nil {
+			return nil, err
+		}
+		contacts = append(contacts, contact)
+	}
+
+	return contacts, nil
+}
