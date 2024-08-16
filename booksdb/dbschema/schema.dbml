@@ -1,0 +1,91 @@
+Project project_name {
+  database_type: 'PostgreSQL'
+  Note: 'Schema for BooksDB'
+}
+
+Table roles {
+  id UUID [primary key]
+  name text [not null]
+  order int [not null, unique]
+
+  Note: 'App wide roles'
+}
+
+Table users {
+  id UUID [primary key]
+  email text [not null, unique]
+  role UUID [not null, ref: > roles.id]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  Note: 'Stores users data, not their profile'
+}
+
+Table authors {
+  id UUID [primary key]
+  name text [not null]
+  country_of_origin text
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  Note: 'Stores authors of books, to support finding books for a particular author'
+}
+
+Table books {
+  id UUID [primary key]
+  isbn text [not null]
+  published_year int
+  genre text
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  Note: 'Books will be added by super users and normal users alike'
+}
+
+Table book_authors {
+  book_id UUID [ref: > books.id]
+  author_id UUID [ref: > authors.id]
+  created_at timestamp [default: `now()`]
+}
+
+Table collections {
+  id UUID [primary key]
+  user_id UUID [not null, ref: > users.id]
+  name text [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  Note: 'Stores a collection of books'
+}
+
+Enum ReadStatus {
+  unread
+  inprogress
+  completed
+}
+
+Table book_collections {
+  book_id UUID [ref: > books.id]
+  collection_id UUID [ref: > collections.id]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (book_id, collection_id) [pk]
+  }
+
+  Note: 'Stores which books are in a collection'
+}
+
+Table user_books {
+  book_id UUID [ref: > books.id]
+  user_id UUID [ref: > users.id]
+  read_status ReadStatus [not null]
+  completed_at datetime
+
+  indexes {
+    (book_id, user_id) [pk]
+  }
+
+  Note: 'Stores a user interaction with the book'
+}
