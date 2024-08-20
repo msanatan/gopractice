@@ -4,12 +4,21 @@
  * @param {number} target
  * @returns {number}
  */
-function linearSearch(items, target) {
-  for (let i = 0; i < items.length; i++) {
-    if (items[i] === target) {
-      return i;
+function binarySearch(items, target) {
+  let first = 0;
+  let last = items.length;
+
+  while (first <= last) {
+    let median = Math.floor((first + last) / 2);
+    if (items[median] === target) {
+      return median;
+    } else if (items[median] < target) {
+      first = median + 1;
+    } else {
+      last = median - 1;
     }
   }
+
   return -1;
 }
 
@@ -26,7 +35,7 @@ function verify(index) {
 }
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let result = linearSearch(numbers, 12);
+let result = binarySearch(numbers, 12);
 verify(result);
-result = linearSearch(numbers, 6);
+result = binarySearch(numbers, 6);
 verify(result);
