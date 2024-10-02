@@ -6,7 +6,7 @@
  */
 function binarySearch(items, target) {
   let first = 0;
-  let last = items.length;
+  let last = items.length -1;
 
   while (first <= last) {
     let median = Math.floor((first + last) / 2);
